@@ -1,8 +1,14 @@
 #! /bin/sh
 
+# update repositories.
+sudo apt-get update --assume-yes
 
-sudo apt-get update
+# upgrade any installed programs.
+sudo apt-get upgrade --assume-yes
 
-sudo apt-get upgrade
+# download easy_install modules.
+sudo apt-get install python-setuptools --assume-yes
+
+# download and install web.py
 
 echo HERE
