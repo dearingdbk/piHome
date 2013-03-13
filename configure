@@ -9,6 +9,10 @@ sudo apt-get upgrade --assume-yes
 # download easy_install modules.
 sudo apt-get install python-setuptools --assume-yes
 
+# download fuzzy-logic modules.
+
+easy_install pyFuzzy
+
 # download and install web.py
 
 echo HERE
