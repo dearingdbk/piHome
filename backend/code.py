@@ -1,9 +1,15 @@
-""" Basic piController using webpy """
+
+""" Basic todo list using webpy 0.3 """
 import web
 import model
+import lib.thermo
+
+
+t = lib.thermo.ThermoThread()
+t.start()
+
 
 ### Url mappings
-
 urls = (
     '/', 'Index',
     '/del/(\d+)', 'Delete'
@@ -17,17 +23,17 @@ render = web.template.render('templates', base='base')
 class Index:
 
     form = web.form.Form(
-        web.form.Textbox('title', web.form.notnull,
+        web.form.Textbox('title', web.form.notnull, 
                          description="Description:"),
-        web.form.Textbox('room', web.form.notnull,
+        web.form.Textbox('room', web.form.notnull, 
                          description="Location:"),
         web.form.Dropdown('id', ['4', '17', '18', '21',
                                 '22', '23', '24', '25'],
                          description="Pin:"),
-        web.form.Dropdown('active', [('0', 'Low'), ('1', 'High')],
+        web.form.Dropdown('active', [('0', 'Low'), ('1', 'High')], 
                           description="Active State:"),
         web.form.Button('Add Device'),
-
+        
     )
 
     def GET(self):
@@ -45,6 +51,8 @@ class Index:
         model.new_todo(form.d.title, form.d.room, form.d.id, form.d.active)
         raise web.seeother('/')
 
+
+
 class Delete:
 
     def POST(self, id):
@@ -52,6 +60,7 @@ class Delete:
         id = int(id)
         model.del_todo(id)
         raise web.seeother('/')
+
 
 app = web.application(urls, globals())
 
