@@ -9,6 +9,12 @@
 import web          # web.py import # 
 import model        # handles calls to the database #
 import lib.thermo   # intelligent agent for climate control #
+import lib.pincushion
+
+cushion = lib.pincushion.Cushion()
+pins = model.get_todos()
+for pin in pins:
+    cushion.add_pin(pin.id, pin.active)
 
 
 t = lib.thermo.ThermoThread()   # create the thread to manage thermostat #
