@@ -1,0 +1,21 @@
+#! /bin/sh
+
+# update repositories.
+sudo apt-get update --assume-yes
+
+# upgrade any installed programs.
+sudo apt-get upgrade --assume-yes
+
+# download easy_install modules.
+sudo apt-get install python-setuptools --assume-yes
+
+# download fuzzy-logic modules.
+wget http://www.antlr.org/download/antlr-3.1.3.tar.gz
+tar xzf antlr-3.1.3.tar.gz
+cd antlr-3.1.3/runtime/Python
+sudo python setup.py install
+easy_install pyFuzzy
+
+# download and install web.py
+
+echo HERE
