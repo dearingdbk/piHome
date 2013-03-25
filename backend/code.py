@@ -1,12 +1,18 @@
+"""
+ * File:     code.py
+ * Author:   
+ * Date:     2013/03/23
+ * Version:  1.0
+ *
+ * Purpose:  Starts and handles calls/posts/requests to the webservice.
+"""
+import web          # web.py import # 
+import model        # handles calls to the database #
+import lib.thermo   # intelligent agent for climate control #
 
-""" Basic todo list using webpy 0.3 """
-import web
-import model
-import lib.thermo
 
-
-t = lib.thermo.ThermoThread()
-t.start()
+t = lib.thermo.ThermoThread()   # create the thread to manage thermostat #
+t.start()                       # start the thread #
 
 
 ### Url mappings
