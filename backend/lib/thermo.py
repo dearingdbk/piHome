@@ -58,8 +58,10 @@ class Input:
         except IOError:
             print ("Unable to Read File " + self.f_name)
     def close_file(self):
-        self.tfile.close()
-
+        try:
+            self.tfile.close()
+        except IOError:
+            print ("Unable to close File " + self.f_name)
     def get_data(self):
         return self.temp_data
 
