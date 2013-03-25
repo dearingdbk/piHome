@@ -7,6 +7,7 @@ install:
         sudo apt-get update --assume-yes
         sudo apt-get upgrade --assume-yes
         sudo apt-get install python-setuptools --assume-yes
+        sudo apt-get install git --assume-yes
         wget $(WANTLR)$(ANTLR).tar.gz
         tar xzf $(ANTLR).tar.gz
         cd ./$(ANTLR)/ ; sudo python setup.py install
