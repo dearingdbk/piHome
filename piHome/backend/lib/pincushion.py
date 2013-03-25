@@ -1,5 +1,5 @@
 import control
-
+# HOLDER CLASS #
 class Cushion:
     def __init__(self):
         self.pin_dict = dict()
