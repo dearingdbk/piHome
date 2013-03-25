@@ -1,5 +1,4 @@
 import control
-import RPi.GPIO as GPIO
 import subprocess
 from datetime import datetime
 import re
@@ -7,12 +6,9 @@ import fuzzball
 import time
 import threading
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-
 class Thermostat:
     def __init__(self, pin, f_name, active):
-        self.control = control.Raspi(GPIO, pin, active)
+        self.control = control.Raspi(pin, active)
         self.input = Input(f_name)
 
     def get_temp(self):
