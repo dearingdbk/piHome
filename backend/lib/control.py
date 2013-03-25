@@ -11,12 +11,13 @@ class Controller(object):
 # to other controller devices such as Rs232 and USB at a later date
 
 class Raspi(Controller):
+    import RPi.GPIO as GPIO
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
     
-    # Initialize the class with a GPIO object
     # The pin that controls the furnace or AC
     # and wheteher the device is active High or Active Low
-    def __init__(self, GPIO, pin, active):
-        self.GPIO = GPIO
+    def __init__(self, pin, active):
         self.pin = pin
         self.active = active
         self.GPIO.setup(self.pin, self.GPIO.OUT)
