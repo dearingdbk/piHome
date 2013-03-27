@@ -1,4 +1,4 @@
-CREATE TABLE todo (
+CREATE TABLE pins (
     id INT ,
     title TEXT,
     status INT,
