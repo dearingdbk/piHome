@@ -36,32 +36,32 @@ render = web.template.render('templates', base='base')
 class Index:
 
     form = web.form.Form(
-        web.form.Textbox('title', web.form.notnull, 
+        web.form.Textbox('title', web.form.notnull,
                          description="Description:"),
-        web.form.Textbox('room', web.form.notnull, 
+        web.form.Textbox('room', web.form.notnull,
                          description="Location:"),
         web.form.Dropdown('id', ['4', '17', '18', '21',
                                 '22', '23', '24', '25'],
                          description="Pin:"),
-        web.form.Dropdown('active', [('0', 'Low'), ('1', 'High')], 
+        web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')],
                           description="Active State:"),
         web.form.Button('Add Device'),
-        
+
     )
 
     def GET(self):
         """ Show page """
-        todos = model.get_todos()
+        pins = model.get_pins()
         form = self.form()
-        return render.index(todos, form)
+        return render.index(pins, form)
 
     def POST(self):
         """ Add new entry """
         form = self.form()
         if not form.validates():
-            todos = model.get_todos()
-            return render.index(todos, form)
-        model.new_todo(form.d.title, form.d.room, form.d.id, form.d.active)
+            pins = model.get_pins()
+            return render.index(pins, form)
+        model.new_pin(form.d.title, form.d.room, form.d.id, form.d.active)
         raise web.seeother('/')
 
 
@@ -71,7 +71,7 @@ class Delete:
     def POST(self, id):
         """ Delete based on ID """
         id = int(id)
-        model.del_todo(id)
+        model.del_pin(id)
         raise web.seeother('/')
 
 
