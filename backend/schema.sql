@@ -1,5 +1,8 @@
 CREATE TABLE todo (
-    id INT AUTO_INCREMENT,
+    id INT ,
     title TEXT,
+    status INT,
+    room TEXT,
+    active TEXT,
     primary key (id)
 );
