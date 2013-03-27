@@ -1,15 +1,15 @@
 import web
 
-db = web.database(dbn='sqlite', db='todo.db')
+db = web.database(dbn='sqlite', db='pinRegister.db')
 
-def get_todos():
-    return db.select('todo', order='id')
+def get_pins():
+    return db.select('pins', order='id')
 
-def new_todo(my_title, my_room, my_id, my_active):
+def new_pin(my_title, my_room, my_id, my_active):
    try:
-        db.insert('todo', id=my_id, title=my_title, status='0',
+        db.insert('pins', id=my_id, title=my_title, status='0',
               room=my_room, active=my_active)
    except:
        print "BAD PIN NUMBER"
-def del_todo(id):
-    db.delete('todo', where="id=$id", vars=locals())
+def del_pin(id):
+    db.delete('pins', where="id=$id", vars=locals())
