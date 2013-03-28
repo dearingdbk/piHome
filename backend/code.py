@@ -1,10 +1,10 @@
-<<<<<<< HEAD
+
 """ Basic todo list using webpy 0.3 """
 import web
 import model
 import lib.thermo
 import lib.pincushion
-=======
+
 """
  * File:     code.py
  * Author:   
@@ -23,7 +23,6 @@ cushion = lib.pincushion.Cushion()
 pins = model.get_todos()
 for pin in pins:
     cushion.add_pin(pin.id, pin.active)
->>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6
 
 """cushion = lib.pincushion.Cushion()
 pins = model.get_todos()
@@ -55,11 +54,10 @@ class Index:
         web.form.Dropdown('id', ['4', '17', '18', '21',
                                 '22', '23', '24', '25'],
                          description="Pin:"),
-<<<<<<< HEAD
+
         web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')], 
-=======
+
         web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')],
->>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6
                           description="Active State:"),
         web.form.Button('Add Device'),
 
