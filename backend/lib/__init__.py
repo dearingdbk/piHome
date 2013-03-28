@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-<<<<<<< HEAD
+
 """piHome ~ Home Automation"""
 
 
@@ -14,6 +14,3 @@ __author__ = [
 __license__ = "public domain"
 __contributors__ = "NIL"
 
-=======
-
->>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6

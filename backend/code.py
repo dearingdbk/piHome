@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56529f9bb9667cbe82116ce26bfdec0c531fc3ae
 """ Basic todo list using webpy 0.3 """
 import web
 import model
@@ -23,7 +26,10 @@ cushion = lib.pincushion.Cushion()
 pins = model.get_todos()
 for pin in pins:
     cushion.add_pin(pin.id, pin.active)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56529f9bb9667cbe82116ce26bfdec0c531fc3ae
 
 """cushion = lib.pincushion.Cushion()
 pins = model.get_todos()
@@ -59,7 +65,10 @@ class Index:
         web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')], 
 
         web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')],
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56529f9bb9667cbe82116ce26bfdec0c531fc3ae
                           description="Active State:"),
         web.form.Button('Add Device'),
 
@@ -96,6 +105,7 @@ app = web.application(urls, globals())
 if __name__ == '__main__':
     app.run()
 
+<<<<<<< HEAD
 
 
 
@@ -153,3 +163,5 @@ if __name__ == '__main__':
 #    app.run()
 
 
+=======
+>>>>>>> 56529f9bb9667cbe82116ce26bfdec0c531fc3ae
