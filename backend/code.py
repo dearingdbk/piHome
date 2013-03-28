@@ -1,8 +1,29 @@
+<<<<<<< HEAD
 """ Basic todo list using webpy 0.3 """
 import web
 import model
 import lib.thermo
 import lib.pincushion
+=======
+"""
+ * File:     code.py
+ * Author:   
+ * Date:     2013/03/23
+ * Version:  1.0
+ *
+ * Purpose:  Starts and handles calls/posts/requests to the webservice.
+"""
+import web          # web.py import # 
+import model        # handles calls to the database #
+import lib.thermo   # intelligent agent for climate control #
+import lib.pincushion
+import signal, os
+
+cushion = lib.pincushion.Cushion()
+pins = model.get_todos()
+for pin in pins:
+    cushion.add_pin(pin.id, pin.active)
+>>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6
 
 """cushion = lib.pincushion.Cushion()
 pins = model.get_todos()
@@ -27,17 +48,21 @@ render = web.template.render('templates', base='base')
 class Index:
 
     form = web.form.Form(
-        web.form.Textbox('title', web.form.notnull, 
+        web.form.Textbox('title', web.form.notnull,
                          description="Description:"),
-        web.form.Textbox('room', web.form.notnull, 
+        web.form.Textbox('room', web.form.notnull,
                          description="Location:"),
         web.form.Dropdown('id', ['4', '17', '18', '21',
                                 '22', '23', '24', '25'],
                          description="Pin:"),
+<<<<<<< HEAD
         web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')], 
+=======
+        web.form.Dropdown('active', [('LOW', 'Low'), ('HIGH', 'High')],
+>>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6
                           description="Active State:"),
         web.form.Button('Add Device'),
-        
+
     )
 
     def GET(self):
@@ -73,6 +98,7 @@ if __name__ == '__main__':
 
 
 
+<<<<<<< HEAD
 #import web
 #import view, config
 #from view import render
@@ -125,3 +151,13 @@ if __name__ == '__main__':
 #    app = web.application(urls, globals())
 #    app.internalerror = web.debugerror
 #    app.run()
+=======
+
+
+
+def handler(signum, frame):
+    t.join()
+
+signal.signal(signal.SIGINT, handler)
+signal.signal(signal.SIGQUIT, handler)
+>>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6
