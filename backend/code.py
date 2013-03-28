@@ -1,4 +1,3 @@
-
 """ Basic todo list using webpy 0.3 """
 import web
 import model
@@ -94,68 +93,3 @@ app = web.application(urls, globals())
 if __name__ == '__main__':
     app.run()
 
-
-
-<<<<<<< HEAD
-#import web
-#import view, config
-#from view import render
-
-#db = web.database(dbn="sqlite", db='pinRegister')
-
-#urls = (
- #   '/', 'index'
-#)
-
-#class index:
- #   def GET(self):
-  #      print db.query("23").list()
-   #     todos = db.select('*')
-    #    return render.index(todos)
-      # return render.base(view.listing())
-
-#if __name__ == "__main__":
-#    app = web.application(urls, globals())
-#    app.internalerror = web.debugerror
-#    app.run()
-#import web
-#import RPi.GPIO as GPIO
-#import view, config
-#from view import render
-#from subprocess import call
-
-#GPIO.setmode(GPIO.BCM)
-
-
-#urls = (
-#     '/(.*)', 'index'
-#)
-
-#class index:
- #   def GET(self, pin):
-#        GPIO.setup(17, GPIO.OUT)
-#        if pin in ('off'):
-#            GPIO.output(17, GPIO.LOW)
-#        else:
-#            GPIO.output(17, GPIO.HIGH)
-        #call("echo " + pin + " > /sys/class/gpio/export", shell=True)
-        #call("echo 1 " + " > /sys/class/gpio/gpio" + pin + "/active_low", shell=True)
-        #call("echo \"out\" " + " > /sys/class/gpio/gpio" + pin + "/direction", shell=True)
-        #call("echo 0 " + " > /sys/class/gpio/gpio" + pin + "/value", shell=True)
-#        return render.index(GPIO.input(17))
-
-
-#if __name__ == "__main__":
-#    app = web.application(urls, globals())
-#    app.internalerror = web.debugerror
-#    app.run()
-=======
-
-
-
-def handler(signum, frame):
-    t.join()
-
-signal.signal(signal.SIGINT, handler)
-signal.signal(signal.SIGQUIT, handler)
->>>>>>> cf1b73b952bf510f96f1951a45b3a8a3ababe5b6
