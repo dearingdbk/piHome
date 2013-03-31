@@ -15,4 +15,3 @@ class Cushion:
     def del_pin(self, pin):
         if '_' + str(pin) in self.pin_dict:
             del self.pin_dict['_' + str(pin)]
-
