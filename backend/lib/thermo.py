@@ -7,6 +7,8 @@ import time
 import threading
 import signal, os
 
+
+
 class Thermostat:
     def __init__(self, pin, f_name, active):
         self.control = control.Raspi(pin, active)
@@ -63,6 +65,7 @@ class Input:
 
 
 class ThermoThread(threading.Thread):
+    
     def run(self):
         x = Thermostat(17, "/sys/bus/w1/devices/28-00000354a500/w1_slave", "LOW")
         f = fuzzball.FuzzyTemp("lib/therm.fcl")
@@ -72,19 +75,3 @@ class ThermoThread(threading.Thread):
             else:
                 x.turn_off()
                 time.sleep(60 * 5)
-            if not self.isAlive():
-                exit()
-
-
-def main():
-    signal.signal(signal.SIGINT, handler)
-    t = lib.thermo.ThermoThread()
-    t.start()
-
-
-def handler(signum, frame):
-    print 'Signal handler called with signal', signum
-    raise IOError("Couldn't open device!")
-    t.stop()
-
-if __name__ == '__main__':main()

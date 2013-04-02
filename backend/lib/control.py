@@ -11,7 +11,10 @@ class Controller(object):
 # to other controller devices such as Rs232 and USB at a later date
 
 class Raspi(Controller):
-    import RPi.GPIO as GPIO
+    try:
+        import RPi.GPIO as GPIO
+    except RuntimeError:
+        print("Error importing RPi.GPIO")
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     
@@ -38,3 +41,14 @@ class Raspi(Controller):
             self.GPIO.output(self.pin, self.GPIO.HIGH)
         else:
             self.GPIO.output(self.pin, self.GPIO.LOW)
+
+    def savecounter():
+
+        try:
+            import RPi.GPIO as GPIO
+            GPIO.cleanup()
+        except RuntimeError:
+            print("Error importing RPi.GPIO")
+
+    import atexit
+    atexit.register(savecounter)

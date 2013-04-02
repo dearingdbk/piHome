@@ -5,8 +5,8 @@ import lib.thermo
 import lib.pincushion
 
 t = lib.thermo.ThermoThread()
+t.daemon = True
 t.start()
-
 
 ### Url mappings
 urls = (
@@ -49,9 +49,11 @@ class Index:
         if not form.validates():
             pins = model.get_pins()
             return render.index(pins, form)
-        model.new_pin(form.d.title, form.d.room, form.d.id, form.d.active)
-        raise web.seeother('/')
-
+        try:
+            model.new_pin(form.d.title, form.d.room, form.d.id, form.d.active)
+            raise web.seeother('/')
+        except:
+            return render.error()
 
 
 class Delete:
@@ -63,7 +65,7 @@ class Delete:
 
 class On:
     def POST(self, id):
-        #id = int(id)
+        id = int(id)
         model.turn_on(id)
         raise web.seeother('/')
 
@@ -77,3 +79,4 @@ app = web.application(urls, globals())
 
 if __name__ == '__main__':
     app.run()
+
