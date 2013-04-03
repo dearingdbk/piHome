@@ -64,12 +64,14 @@ form input[type="submit"]
 
 div.device
 {
+    margin: 32px;
+
     position: absolute;
 
     width: 64px;
     height: 64px;
 
-    z-index: 2;
+    z-index: 3;
 }
 
 div.device.onoff
@@ -88,7 +90,29 @@ div.room
     border: 2px solid rgba(255, 255, 255, .75);
     position: absolute;
 
+    z-index: 2;
+}
+
+div.room div.ui-icon-gripsmall-diagonal-se
+{
+    background: transparent url("img/handle.png") no-repeat;
+    background-position: 0 0;
+}
+
+div#trashcan
+{
+    background: url("img/trashcan.png");
+
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+
     z-index: 1;
+}
+
+div#trashcan.hover
+{
+    background: url("img/trashcan-hover.png");
 }
 
 /*
