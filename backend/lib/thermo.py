@@ -1,4 +1,3 @@
-import control
 import subprocess
 from datetime import datetime
 import re
@@ -6,12 +5,21 @@ import fuzzball
 import time
 import threading
 import signal, os
-
+import model
 
 
 class Thermostat:
     def __init__(self, pin, f_name, active):
-        self.control = control.Raspi(pin, active)
+        
+        try:
+            model.new_pin('heater', 'Office', pin, active)
+        except:
+            print "ALREADY THERE"
+        try:
+            model.new_pin('thermostat', 'Office', 4, active)
+        except:
+            print "ALREADY THERE" 
+        self.pin = pin
         self.input = Input(f_name)
 
     def get_temp(self):
@@ -33,10 +41,12 @@ class Thermostat:
         return re.sub('[a-z><"=  \n]', '', self.trial)
 
     def turn_on(self):
-        self.control.turn_on()
+        model.turn_on(self.pin)        
+
 
     def turn_off(self):
-        self.control.turn_off()
+        model.turn_off(self.pin)       
+
         
 class Input:
     def __init__(self, f_name):
