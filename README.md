@@ -1,4 +1,4 @@
 piHome
 ======
 
-RaspberryPi Home Automation Controller
+The **Raspberry Pi Home Automation** project attempts to leverage the [Raspberry Pi](http://www.raspberrypi.org/) general-purpose computing device as a controller for home automation tasks.
