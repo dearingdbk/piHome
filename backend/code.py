@@ -10,6 +10,7 @@ t.start()
 
 ### Url mappings
 urls = (
+    '/', Index
     '/controllers/', Controllers,
     '/devices/(\d+)?', Devices,
     '/rooms/(\d+)?', Rooms
@@ -78,6 +79,10 @@ class Off:
         model.Device.turn_off(id)
         raise web.seeother('/')
 """
+
+class Index:
+    def GET(self):
+        raise web.seeother('/static/index.html')
 
 """Deliver controller information."""
 class Controllers:
