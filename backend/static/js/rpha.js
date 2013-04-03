@@ -1,4 +1,4 @@
-var BACKEND = 'http://localhost/piHome/backend-mockup/';
+var BACKEND = '/';
 
 var DEVICE_TYPES = {
     onoff: {
