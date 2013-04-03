@@ -24,12 +24,12 @@ class Raspi(Controller):
         self.pin = pin
         self.active = active
         self.GPIO.setup(self.pin, self.GPIO.OUT)
-        if self.active == "LOW":
+        if self.active == "low":
             self.GPIO.output(self.pin, self.GPIO.HIGH)
     
     # Turn on the Pin that is being controlled
     def turn_on(self):
-        if self.active == "LOW":
+        if self.active == "low":
             self.GPIO.output(self.pin, self.GPIO.LOW)
         else:
             self.GPIO.output(self.pin, self.GPIO.HIGH)
@@ -37,7 +37,7 @@ class Raspi(Controller):
 
     # Turn off the pin that is being controlled
     def turn_off(self):
-        if self.active == "LOW":
+        if self.active == "low":
             self.GPIO.output(self.pin, self.GPIO.HIGH)
         else:
             self.GPIO.output(self.pin, self.GPIO.LOW)
