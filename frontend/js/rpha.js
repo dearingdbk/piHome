@@ -3,21 +3,105 @@ var BACKEND = 'http://localhost/piHome/backend-mockup/';
 var DEVICE_TYPES = {
     onoff: {
         name: 'On/off',
-        activate: function(el) {
+        activate: function(device) {
             if ($(this).hasClass('on'))
+            {
                 $(this).removeClass('on');
+                var state = 'on';
+            }
             else
+            {
                 $(this).addClass('on');
+                var state = 'off';
+            }
+
+            $.ajax({
+                type: "POST",
+                url: BACKEND + 'devices/' + $(device).attr('data-device-id'),
+                data: {state: state}
+            })
         }
     },
     dimmer: {
         name: 'Dimmer',
-        activate: function(el) {
+        activate: function(device) {
+            var floor = $(device).attr('data-device-floor');
+            var ceiling = $(device).attr('data-device-ceiling');
+            var reading = $(device).attr('data-device-reading');
+            $('<div />')
+                .append($('<form />')
+                    .append($('<dl />')
+/*
+                        .append($('<dt />')
+                            .html('Dimmer floor:'))
+                        .append($('<dd />')
+                            .attr('id', 'dimmer-floor')
+                            .html(floor))
+                        .append($('<dt />')
+                            .html('Dimmer ceiling:'))
+                        .append($('<dd />')
+                            .attr('id', 'dimmer-ceiling')
+                            .html(ceiling))
+*/
+                        .append($('<dt />')
+                            .html('Dimmer value:'))
+                        .append($('<dd />')
+                            .attr('id', 'dimmer-reading')
+                            .html(reading)))
+                    .append($('<div />')
+                        .slider({
+                            min: -100,
+                            max: 300,
+                            values: [/*floor * 2, ceiling * 2,*/ reading * 2],
+                            slide: function(event, ui) {
+/*
+                                floor = ui.values[0] / 2;
+                                ceiling = ui.values[1] / 2;
+*/
+                                reading = ui.values[0] / 2;
+/*
+                                $('#dimmer-floor').html(floor);
+                                $('#dimmer-ceiling').html(ceiling);
+*/
+                                $('#dimmer-reading').html(reading);
+                            }
+                        })))
+                .dialog({
+                    width: 600,
+                    height: 300,
+                    modal: true,
+                    buttons: {
+                        'Update device': function() {
+                            $.ajax({
+                                type: 'POST',
+                                url: BACKEND + 'devices/' + $(device).attr('data-device-id'),
+                                data: {
+                                    floor: floor,
+                                    ceiling: ceiling,
+                                    reading: reading,
+                                },
+                                success: function() {
+                                    loadDevices();
+                                }
+                            });
+                        },
+                        'Cancel': function () {
+                            $(this).dialog('close');
+                        }
+                    },
+                    close: function() {
+                        $(this).dialog('destroy');
+                    }});
         }
     },
     sensor: {
         name: 'Sensor',
-        activate: function(el) {
+        activate: function(device) {
+            $.getJSON(BACKEND + 'devices/' + $(device).attr('data-device-id'),
+                function(response) {
+                    $(device).attr('data-device-reading', response.reading);
+                    alert('The sensor indicated ' + response.reading + '.');
+                });
         }
     }
 };
@@ -175,7 +259,7 @@ var loadDevices = function() {
     $.getJSON(BACKEND + 'devices', function(devices) {
         $.each(devices, function(index, device) {
             var position = getPositionOnPage({x: device.x, y: device.y});
-            $('body').append($('<div />')
+            var deviceEl = $('<div />')
                 .attr('data-device-id', device.id)
                 .addClass('device')
                 .addClass(device.type)
@@ -196,7 +280,23 @@ var loadDevices = function() {
                         });
                     }
                 })
-                .click(DEVICE_TYPES[device.type].activate));
+                .click(function () {
+                    DEVICE_TYPES[device.type].activate(this);
+                });
+
+            if (device.type == 'onoff' && device.state == 'on')
+            {
+                deviceEl.addClass('on');
+            }
+            else if (device.type == 'dimmer' || device.type == 'sensor')
+            {
+                deviceEl
+                    .attr('data-device-floor', device.floor)
+                    .attr('data-device-ceiling', device.ceiling)
+                    .attr('data-device-reading', device.reading);
+            }
+
+            $('body').append(deviceEl);
         });
     });
 }

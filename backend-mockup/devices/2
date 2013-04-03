@@ -1,0 +1,9 @@
+{
+    "id": 3,
+    "type": "dimmer",
+    "floor": 0,
+    "ceiling": 60,
+    "reading": 10,
+    "x": 200,
+    "y": -40
+}

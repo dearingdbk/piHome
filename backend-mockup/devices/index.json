@@ -3,7 +3,25 @@
         "id": 1,
         "type": "onoff",
         "state": "on",
-        "x": -100,
-        "y": -80
+        "x": -250,
+        "y": -150
+    },
+    {
+        "id": 2,
+        "type": "sensor",
+        "floor": 0,
+        "ceiling": 40,
+        "reading": 17.5,
+        "x": 50,
+        "y": 0
+    },
+    {
+        "id": 3,
+        "type": "dimmer",
+        "floor": 0,
+        "ceiling": 60,
+        "reading": 10,
+        "x": 200,
+        "y": -40
     }
 ]
