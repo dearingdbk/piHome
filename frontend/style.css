@@ -59,6 +59,42 @@ form input[type="submit"]
 }
 
 /*
+<<<<<<< HEAD
+=======
+ * Device representations.
+ */
+
+div.device
+{
+    position: absolute;
+
+    width: 64px;
+    height: 64px;
+
+    z-index: 2;
+}
+
+div.device.onoff
+{
+    background: url("img/onoff.png");
+}
+
+div.device.onoff.on
+{
+    background: url("img/onoff-on.png");
+}
+
+div.room
+{
+    background-color: rgba(255, 255, 255, .05);
+    border: 2px solid rgba(255, 255, 255, .75);
+    position: absolute;
+
+    z-index: 1;
+}
+
+/*
+>>>>>>> Added some UI elements.
  * Fixes for jQuery UI theme things.
  */
 

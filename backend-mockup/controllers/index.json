@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "name": "Raspberry Pi GPIO",
+        "connections": [
+            {
+                "id": 1,
+                "name": "Pin 1"
+            },
+            {
+                "id": 2,
+                "name": "Pin 2"
+            },
+            {
+                "id": 3,
+                "name": "Pin 3"
+            },
+            {
+                "id": 4,
+                "name": "Pin 4"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Raspberry Pi GPIO #2",
+        "connections": [
+            {
+                "id": 1,
+                "name": "Pin 5"
+            },
+            {
+                "id": 2,
+                "name": "Pin 6"
+            },
+            {
+                "id": 3,
+                "name": "Pin 7"
+            },
+            {
+                "id": 4,
+                "name": "Pin 8"
+            }
+        ]
+    }
+]
