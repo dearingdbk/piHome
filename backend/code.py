@@ -5,15 +5,17 @@ import lib.thermo
 import lib.pincushion
 
 
-###    This starts the temperature Thread as a Daemon.
-###    pin 4 and pin 17 will be occupied when this thread
-###    runs.
+"""    This starts the temperature Thread as a Daemon.
+       pin 4 and pin 17 will be occupied when this thread
+       runs.
+"""
 t = lib.thermo.ThermoThread()
 t.daemon = True
 t.start()
 
-### Url mappings - This maps different urls to classes in code.py
-### Any URL's that are not documented here will return a 404 not found error
+""" Url mappings - This maps different urls to classes in code.py
+    Any URL's that are not documented here will return a 404 not found error
+"""
 urls = (
     '/', 'Index',
     '/del/(\d+)', 'Delete',
@@ -22,12 +24,12 @@ urls = (
 )
 
 
-### Templates - This is where we direct code.py to the folder containing our html
-### documents to compile and display online.
+""" Templates - This is where we direct code.py to the folder containing our html
+    documents to compile and display online."""
 render = web.template.render('templates', base='base')
 
 
-### Class which dispalys the root page of the website /
+""" Class which dispalys the root page of the website / """
 class Index:
 
     form = web.form.Form(
