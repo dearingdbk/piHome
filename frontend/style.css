@@ -1,0 +1,82 @@
+body
+{
+    background: #2060b0 url("img/blueprint.jpg") repeat;
+    color: #ffffff;
+    font: normal 12pt "Comic Sans MS", fantasy;
+    margin: 0;
+}
+
+ul#toolbar
+{
+    list-style: none;
+    margin: 0;
+    padding: .5em;
+    position: absolute;
+}
+
+ul#toolbar li
+{
+    float: left;
+    margin-right: 1em;
+}
+
+ul#toolbar li a
+{
+    color: inherit;
+    opacity: .5;
+    outline: 0;
+    text-decoration: none;
+}
+
+ul#toolbar li a:hover
+{
+    opacity: 1;
+}
+
+form fieldset
+{
+    overflow: auto;
+}
+
+form label
+{
+    clear: left;
+    float: left;
+    margin-top: .15em;
+
+    width: 12em;
+}
+
+form input, form select
+{
+    float: left;
+}
+
+form input[type="submit"]
+{
+    clear: left;
+    float: none;
+}
+
+/*
+ * Fixes for jQuery UI theme things.
+ */
+
+div.ui-dialog
+{
+    /*
+     * Our body font size is really big and the jQuery UI theme doesn't
+     * compensate. This is set absolutely as opposed to a percentile font size
+     * so dialogs don't all break if we ever switch to a different body font.
+     */
+    font-size: 10pt;
+}
+
+div.ui-widget-overlay
+{
+    /*
+     * Fix the "white stripe" issue:
+     * http://stackoverflow.com/questions/9826728/error-in-the-background-overlay-of-a-jquery-dialog-widget-with-the-modal-option
+     */
+    background-repeat: repeat;
+}
