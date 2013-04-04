@@ -1,3 +1,13 @@
+"""
+ * File:     control.py
+ * Author:   BD
+ * Date:     2013/03/29
+ * Version:  1.0
+ *
+ * Purpose:  Interface class for devices added to the system to control house hold items.
+ *           Can be extended to manage more devices at a later date.
+"""
+
 # Base class for a controller object #
 # Sub-Classes of this class can implement new devices
 # as required to control different parts of homes or to implement
