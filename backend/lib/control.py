@@ -1,4 +1,7 @@
 # Base class for a controller object #
+# Sub-Classes of this class can implement new devices
+# as required to control different parts of homes or to implement
+# wireless or bluetooth devices and protocols
 
 class Controller(object):
     def turn_on(self):
@@ -42,13 +45,16 @@ class Raspi(Controller):
         else:
             self.GPIO.output(self.pin, self.GPIO.LOW)
 
-    def savecounter():
-
+    # Clean up Pins on exit, turnn off all pins that are on when the system shuts down.
+    def safe_shutdown():
         try:
             import RPi.GPIO as GPIO
             GPIO.cleanup()
         except RuntimeError:
             print("Error importing RPi.GPIO")
 
+    # Regiter shutdown method actions
+    # when the main system shuts down any registered methods
+    # will be called to ensure a clean shutdown.
     import atexit
-    atexit.register(savecounter)
+    atexit.register(safe_shutdown)
