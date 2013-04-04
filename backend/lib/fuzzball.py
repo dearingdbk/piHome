@@ -1,5 +1,17 @@
+"""
+ * File:     fuzzball.py
+ * Author:   BD
+ * Date:     2013/03/29
+ * Version:  1.0
+ *
+ * Purpose:  Handles the Fuzzy Logic Controller portion of the intelligent agent
+ *           Uses packages from pyFuzzy to read Fuzzy Control Language document therm.fcl.
+"""
 import fuzzy.storage.fcl.Reader
 
+# Sets up a dictionary containing initial values for temp, time, and outside.
+# contains a method calc_vals() to calculate a crisp output from our fuzzy input values.
+# Based on rule blocks contained in therm.fcl.
 class FuzzyTemp:
     def __init__(self, f_name):
         self.f_name = f_name
