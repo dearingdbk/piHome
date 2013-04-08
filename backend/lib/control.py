@@ -34,7 +34,7 @@ class Raspi(Controller):
     # The pin that controls the furnace or AC
     # and wheteher the device is active High or Active Low
     def __init__(self, pin, active):
-        self.pin = pin
+        self.pin = int(pin)
         self.active = active
         self.GPIO.setup(self.pin, self.GPIO.OUT)
         if self.active == "low":

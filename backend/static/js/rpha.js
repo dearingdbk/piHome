@@ -4,15 +4,15 @@ var DEVICE_TYPES = {
     onoff: {
         name: 'On/off',
         activate: function(device) {
-            if ($(this).hasClass('on'))
+            if ($(device).hasClass('on'))
             {
-                $(this).removeClass('on');
-                var state = 'on';
+                $(device).removeClass('on');
+                var state = 'off';
             }
             else
             {
-                $(this).addClass('on');
-                var state = 'off';
+                $(device).addClass('on');
+                var state = 'on';
             }
 
             $.ajax({
@@ -84,6 +84,7 @@ var DEVICE_TYPES = {
                                     loadDevices();
                                 }
                             });
+                            $(this).dialog('close');
                         },
                         'Cancel': function () {
                             $(this).dialog('close');
@@ -136,7 +137,7 @@ var addTrashcan = function() {
 }
 
 var addDevice = function() {
-    $.getJSON(BACKEND + 'controllers', addDeviceDialog);
+    $.getJSON(BACKEND + 'controllers/', addDeviceDialog);
 }
 
 var addDeviceDialog = function(controllers) {
@@ -203,17 +204,20 @@ var addDeviceDialog = function(controllers) {
                 'Add device': function() {
                     $.ajax({
                         type: 'PUT',
-                        url: BACKEND + 'devices',
+                        url: BACKEND + 'devices/',
                         data: {
                             controller: $('#controller').val(),
                             connection: $('#connection').val(),
                             active: $('#active-high-low').val(),
                             type: $('#device-type').val()
                         },
-                        success: function() {
+                        success: function(response) {
+                            if (!response.success)
+                                alert(response.message);
                             loadDevices();
                         }
                     });
+                    $(this).dialog('close');
                 },
                 'Cancel': function () {
                     $(this).dialog('close');
@@ -247,7 +251,7 @@ var populateConnections = function(controllers, selectedControllerId)
 var addRoom = function() {
     $.ajax({
         type: 'PUT',
-        url: BACKEND + 'rooms',
+        url: BACKEND + 'rooms/',
         success: function() {
             loadRooms();
         }
@@ -256,7 +260,7 @@ var addRoom = function() {
 
 var loadDevices = function() {
     $('.device').not('#trashcan').remove();
-    $.getJSON(BACKEND + 'devices', function(devices) {
+    $.getJSON(BACKEND + 'devices/', function(devices) {
         $.each(devices, function(index, device) {
             var position = getPositionOnPage({x: device.x, y: device.y});
             var deviceEl = $('<div />')
@@ -302,7 +306,7 @@ var loadDevices = function() {
 }
 
 var loadRooms = function() {
-    $.getJSON(BACKEND + 'rooms', function(rooms) {
+    $.getJSON(BACKEND + 'rooms/', function(rooms) {
         $.each(rooms, function(index, room) {
             var position = getPositionOnPage({x: room.x, y: room.y});
             $('body').append($('<div />')

@@ -4,23 +4,24 @@ import model
 import lib.thermo
 import lib.pincushion
 
-t = lib.thermo.ThermoThread()
+# Uncomment for thermo
+"""t = lib.thermo.ThermoThread()
 t.daemon = True
-t.start()
+t.start()"""
 
 ### Url mappings
 urls = (
-    '/', Index
-    '/controllers/', Controllers,
-    '/devices/(\d+)?', Devices,
-    '/rooms/(\d+)?', Rooms
+    '/', 'Index',
+    '/controllers/', 'Controllers',
+    '/devices/(\d+)?', 'Devices',
+    '/rooms/(\d+)?', 'Rooms'
+)
 """
     '/', 'Index',
     '/del/(\d+)', 'Delete',
     '/on/(\d+)', 'On',
     '/off/(\d+)', 'Off'
 """
-)
 
 
 """
@@ -93,35 +94,35 @@ class Controllers:
                 'name': 'Raspberry Pi GPIO',
                 'connections': [
                     {
-                        'id': 4
+                        'id': 4,
                         'name': 'Pin 4'
                     },
                     {
-                        'id': 17
+                        'id': 17,
                         'name': 'Pin 17'
                     },
                     {
-                        'id': 18
+                        'id': 18,
                         'name': 'Pin 18'
                     },
                     {
-                        'id': 21
+                        'id': 21,
                         'name': 'Pin 21'
                     },
                     {
-                        'id': 22
+                        'id': 22,
                         'name': 'Pin 22'
                     },
                     {
-                        'id': 23
+                        'id': 23,
                         'name': 'Pin 23'
                     },
                     {
-                        'id': 24
+                        'id': 24,
                         'name': 'Pin 24'
                     },
                     {
-                        'id': 25
+                        'id': 25,
                         'name': 'Pin 25'
                     }
                 ]
@@ -133,10 +134,10 @@ class Devices:
         web.header('Content-Type', 'application/json')
 
         if id != None:
-            return json.dumps(model.Debice.get_device(id))
+            return json.dumps(model.Device.get_device(id))
         return json.dumps(model.Device.get_devices())
 
-    def PUT(self):
+    def PUT(self, id = None):
         web.header('Content-Type', 'application/json')
         input = web.input()
 
@@ -167,12 +168,12 @@ class Devices:
 
 """Handle rooms."""
 class Rooms:
-    def GET(self):
+    def GET(self, id = None):
         web.header('Content-Type', 'application/json')
 
         return json.dumps(model.Room.get_rooms())
 
-    def PUT(self):
+    def PUT(self, id = None):
         web.header('Content-Type', 'application/json')
         input = web.input()
 

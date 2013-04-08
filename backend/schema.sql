@@ -1,10 +1,10 @@
-CREATE TABLE pins (
+CREATE TABLE devices (
     id INTEGER PRIMARY KEY,
     controller VARCHAR(255),
     connection VARCHAR(255),
     active VARCHAR(8),
     type VARCHAR(255),
-    status BOOLEAN,
+    state BOOLEAN,
     floor DECIMAL(4, 1),
     ceiling DECIMAL(4, 1),
     reading DECIMAL(4, 1),
