@@ -19,8 +19,5 @@ install:
 	sudo easy_install web.py
 	sudo rm -R $(ANTLR)*
 	sudo rm -R $(FUZZY)*
-	sqlite3 pinRegister.db < backend/schema.sql
-	mv pinRegister.db backend/
-# Need to move our files into appropriate directory #
-# code.py model.py templates/index.html templates/base.html #
-# to directory that easy install created /usr/local/lib/python2.7/dist-packages/web.py-0.37-py2.7.egg/web/ #
+	cd ./backend/ ; sqlite3 pinRegister.db < backend/schema.sql # move into backend folder then create db.
+	# mv pinRegister.db backend/ move / copy no longer required.
