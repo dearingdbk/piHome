@@ -19,5 +19,5 @@ install:
 	sudo easy_install web.py
 	sudo rm -R $(ANTLR)*
 	sudo rm -R $(FUZZY)*
-	cd ./backend/ ; sqlite3 pinRegister.db < backend/schema.sql # move into backend folder then create db.
+	cd ./backend/ ; sqlite3 pinRegister.db < schema.sql # move into backend folder then create db.
 	# mv pinRegister.db backend/ move / copy no longer required.
