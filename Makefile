@@ -20,4 +20,8 @@ install:
 	sudo rm -R $(ANTLR)*
 	sudo rm -R $(FUZZY)*
 	cd ./backend/ ; sqlite3 pinRegister.db < schema.sql # move into backend folder then create db.
+	sudo modprobe w1-gpio  # add in the module to read 1-wire devices off GPIO pin 4
+	sudo modprobe w1-therm # add in the module to read 1-wire temperature devices.
+	sudo echo w1-gpio >> /etc/modules # permanently add in the gpio module.
+	sudo echo w1-therm >> /etc/modules # permanently add in the therm module.
 	# mv pinRegister.db backend/ move / copy no longer required.
