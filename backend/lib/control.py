@@ -26,10 +26,12 @@ class Controller(object):
 class Raspi(Controller):
     try:
         import RPi.GPIO as GPIO
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
     except RuntimeError:
         print("Error importing RPi.GPIO")
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
+        import os
+        os._exit()
     
     # The pin that controls the furnace or AC
     # and wheteher the device is active High or Active Low
