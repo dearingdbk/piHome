@@ -48,7 +48,7 @@ class Thermostat:
         self.time = datetime.now()
         return self.time.hour
         
-    # return local outside temperature as received from wether Canada
+    # return local outside temperature as received from weather Canada
     def get_outside(self):
         self.trial = subprocess.Popen(
             "curl -s http://www.weatheroffice.gc.ca/city/pages/ns-35_metric_e.html | grep temperature ", stdout=subprocess.PIPE, shell=True).stdout.read()
